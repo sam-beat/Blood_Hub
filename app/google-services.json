@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1092257294185",
+    "project_id": "blood-hub-3f69e",
+    "storage_bucket": "blood-hub-3f69e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1092257294185:android:329c6bd2a5cad3757f7ff8",
+        "android_client_info": {
+          "package_name": "com.example.bloodhub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1092257294185-qrmpv6tftpfma6mjh40ll66r8il44a92.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bloodhub",
+            "certificate_hash": "77739b4a185312a8701906c5d4511ddfff9b6437"
+          }
+        },
+        {
+          "client_id": "1092257294185-hoack038o66n7ta8q7csq49p7a1alcoo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8JRBWnICz3yTJRODWA0nPU32hl4DWH7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1092257294185-hoack038o66n7ta8q7csq49p7a1alcoo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

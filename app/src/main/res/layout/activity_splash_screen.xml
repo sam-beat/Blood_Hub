@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashScreenActivity"
+    android:background="@color/theme"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_gravity="center_vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/logo"
+            android:layout_gravity="center"
+            android:layout_marginTop="200dp"
+            android:src="@drawable/download"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:text="Blood Donation App"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textAlignment="center"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/slogan"
+            android:text="Donate Blood and Save Life"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textAlignment="center"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>
