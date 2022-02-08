@@ -3,6 +3,7 @@ package com.example.bloodhub;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.activity.ComponentActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -40,7 +41,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class RecepientRegistrationActivity extends AppCompatActivity {
 
     private TextView backButton;
-    private CircleImageView circleImageView;
+    private CircleImageView profile_image;
     private TextInputEditText registerFullName,registerIdNumber,registerPhoneNumber,registerEmail,registerPassword;
     private Spinner bloodGroupSpinner;
     private Button registerButton;
@@ -56,18 +57,17 @@ public class RecepientRegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recepient_registration);
 
         backButton = findViewById(R.id.backButton);
-        circleImageView = findViewById(R.id.profile_image);
+        profile_image = findViewById(R.id.profile_image);
         registerFullName = findViewById(R.id.register_fullname);
         registerIdNumber = findViewById(R.id.register_ID_number);
-        registerPhoneNumber = findViewById(R.id.register_mobile_number);
         registerEmail = findViewById(R.id.register_email);
         registerPassword = findViewById(R.id.register_password);
+        registerPhoneNumber = findViewById(R.id.register_mobile_number);
         bloodGroupSpinner = findViewById(R.id.bloodGroupSpinner);
         registerButton = findViewById(R.id.register_button);
         loader = new ProgressDialog(this);
 
         mAuth = FirebaseAuth.getInstance();
-
 
 
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -78,16 +78,16 @@ public class RecepientRegistrationActivity extends AppCompatActivity {
             }
         });
 
-
-
-        circleImageView.setOnClickListener(new View.OnClickListener() {
+        profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_PICK);
-                i.setType("image/");
+                i.setType("image/*");
                 startActivityForResult(i,1);
             }
         });
+
+
 
 
         registerButton.setOnClickListener(new View.OnClickListener() {
@@ -135,7 +135,7 @@ public class RecepientRegistrationActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(!task.isSuccessful()){
                                 String error = task.getException().toString();
-                                Toast.makeText(RecepientRegistrationActivity.this, "Error"+error,Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RecepientRegistrationActivity.this, "Error"+error,Toast.LENGTH_LONG).show();
                             }
                             else {
                                 String currentUserId = mAuth.getCurrentUser().getUid();
@@ -150,6 +150,7 @@ public class RecepientRegistrationActivity extends AppCompatActivity {
                                 userInfo.put("bloodgroup",bloodgroup);
                                 userInfo.put("type","recepient");
                                 userInfo.put("search","recepient"+bloodgroup);
+
 
 
                                 userDatabaseRef.updateChildren(userInfo).addOnCompleteListener(new OnCompleteListener() {
@@ -242,14 +243,14 @@ public class RecepientRegistrationActivity extends AppCompatActivity {
 
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1 && resultCode == RESULT_OK && data != null){
             resultUri = data.getData();
-            circleImageView.setImageURI(resultUri);
+            profile_image.setImageURI(resultUri);
         }
     }
+
 
 }

@@ -13,7 +13,6 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,11 +40,18 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class DonorRegistrationActivity extends AppCompatActivity {
 
     private TextView backButton;
-    private CircleImageView circleImageView;
-    private TextInputEditText registerFullName,registerIdNumber,registerPhoneNumber,registerEmail,registerPassword;
+
+    private CircleImageView profile_image;
+
+    private TextInputEditText registerFullName,registerIdNumber,
+            registerPhoneNumber,registerEmail,registerPassword;
+
     private Spinner bloodGroupSpinner;
+
     private Button registerButton;
+
     private Uri resultUri;
+
     private ProgressDialog loader;
 
     private FirebaseAuth mAuth;
@@ -59,7 +65,16 @@ public class DonorRegistrationActivity extends AppCompatActivity {
 
 
         backButton = findViewById(R.id.backButton);
-        circleImageView = findViewById(R.id.profile_image);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(DonorRegistrationActivity.this,LoginActivity.class);
+                startActivity(i);
+            }
+        });
+
+
+        profile_image = findViewById(R.id.profile_image);
         registerFullName = findViewById(R.id.register_fullname);
         registerIdNumber = findViewById(R.id.register_ID_number);
         registerEmail = findViewById(R.id.register_email);
@@ -72,15 +87,9 @@ public class DonorRegistrationActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(DonorRegistrationActivity.this,LoginActivity.class);
-                startActivity(i);
-            }
-        });
 
-        circleImageView.setOnClickListener(new View.OnClickListener() {
+
+        profile_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(Intent.ACTION_PICK);
@@ -141,7 +150,8 @@ public class DonorRegistrationActivity extends AppCompatActivity {
                             }
                             else {
                                 String currentUserId = mAuth.getCurrentUser().getUid();
-                                userDatabaseRef = FirebaseDatabase.getInstance().getReference().child("users").child(currentUserId);
+                                userDatabaseRef = FirebaseDatabase.getInstance().getReference()
+                                        .child("users").child(currentUserId);
 
                                 HashMap userInfo = new HashMap();
                                 userInfo.put("Id",currentUserId);
@@ -152,6 +162,7 @@ public class DonorRegistrationActivity extends AppCompatActivity {
                                 userInfo.put("bloodgroup",bloodgroup);
                                 userInfo.put("type","donor");
                                 userInfo.put("search","donor"+bloodgroup);
+
 
 
                                 userDatabaseRef.updateChildren(userInfo).addOnCompleteListener(new OnCompleteListener() {
@@ -249,7 +260,7 @@ public class DonorRegistrationActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == 1 && resultCode == RESULT_OK && data != null){
             resultUri = data.getData();
-            circleImageView.setImageURI(resultUri);
+            profile_image.setImageURI(resultUri);
         }
     }
 

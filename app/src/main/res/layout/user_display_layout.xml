@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/mainLayout"
@@ -29,10 +29,10 @@
 
 
             <TextView
-                android:id="@+id/type"
+                android:id="@+id/usertype"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:textAlignment="textStart"
                 android:text="type"
                 android:textAllCaps="true"
                 android:textSize="18sp"
@@ -42,7 +42,7 @@
                 android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:textAlignment="textStart"
                 android:text="name"
                 android:textAllCaps="false"
                 android:textSize="18sp"
@@ -52,7 +52,7 @@
                 android:id="@+id/useremail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:textAlignment="textStart"
                 android:text="email"
                 android:textAllCaps="false"
                 android:textSize="18sp"
@@ -62,7 +62,7 @@
                 android:id="@+id/bloodGroup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:textAlignment="textStart"
                 android:text="Blood Group"
                 android:textAllCaps="true"
                 android:textSize="18sp"
@@ -72,7 +72,7 @@
                 android:id="@+id/mobilenumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:textAlignment="textStart"
                 android:text="mobilenumber"
                 android:textAllCaps="true"
                 android:textSize="18sp"
@@ -89,6 +89,7 @@
             android:layout_gravity="center_vertical"
             android:id="@+id/email_now"
             android:text="E-mail"
+            android:visibility="gone"
             android:textAllCaps="false" />
 
 
