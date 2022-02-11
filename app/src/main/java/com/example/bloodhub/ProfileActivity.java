@@ -26,8 +26,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private Button backButton;
-    private CircleImageView profileimage;
-    private TextView name,type,bloodgroup,email,idNumber,phonenumber;
+    private CircleImageView profileImage;
+    private TextView name,type,bloodGroup,email,idNumber,phoneNumber;
 
 
     @Override
@@ -41,11 +41,14 @@ public class ProfileActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        type = findViewById(R.id.type);
-        name = findViewById(R.id.name);
-        email = findViewById(R.id.email);
-        idNumber = findViewById(R.id.Idnumber);
-        phonenumber = findViewById(R.id.mobilenumber);
+        type = (TextView) findViewById(R.id.type);
+        name = (TextView) findViewById(R.id.name);
+        email = (TextView) findViewById(R.id.email);
+        idNumber = (TextView) findViewById(R.id.idNumber);
+        phoneNumber = (TextView) findViewById(R.id.phonenumber);
+        bloodGroup = (TextView)findViewById(R.id.bloodGroup);
+        profileImage = (CircleImageView) findViewById(R.id.profileImage);
+        backButton = (Button) findViewById(R.id.backButton);
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
                 .child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -56,12 +59,12 @@ public class ProfileActivity extends AppCompatActivity {
                 if(snapshot.exists()){
                     type.setText(snapshot.child("type").getValue().toString());
                     name.setText(snapshot.child("name").getValue().toString());
-                    idNumber.setText(snapshot.child("idNumber").getValue().toString());
-                    phonenumber.setText(snapshot.child("phonenumber").getValue().toString());
-                    bloodgroup.setText(snapshot.child("bloodgroup").getValue().toString());
+                    idNumber.setText(snapshot.child("idnumber").getValue().toString());
+                    phoneNumber.setText(snapshot.child("phonenumber").getValue().toString());
+                    bloodGroup.setText(snapshot.child("bloodgroup").getValue().toString());
                     email.setText(snapshot.child("email").getValue().toString());
 
-                    Glide.with(getApplicationContext()).load(snapshot.child("profilepictureurl").getValue().toString()).into(profileimage);
+                    Glide.with(getApplicationContext()).load(snapshot.child("profilepictureurl").getValue().toString()).into(profileImage);
                 }
             }
 
@@ -90,6 +93,7 @@ public class ProfileActivity extends AppCompatActivity {
            case android.R.id.home:
                finish();
                return true;
+
            default:
                return super.onOptionsItemSelected(item);
        }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawer_layout"
+    android:id="@+id/drawerLayout"
     tools:openDrawer="start"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
@@ -48,6 +48,7 @@
         android:layout_gravity="start"
         app:itemIconTint="@drawable/navigation_selector"
         app:itemTextColor="@drawable/navigation_view_item_selected"
-        android:id="@+id/navigation_view"/>
+
+        android:id="@+id/nav_view"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>

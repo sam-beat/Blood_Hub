@@ -1,29 +1,29 @@
-package com.example.bloodhub.Modal;
+package com.example.bloodhub.Model;
 
 public class User {
-    String name,bloodgroup,id,email,idnumber,phonenumber,profilepictureurl,search,type;
+    String Id,bloodgroup,email,idnumber,name,phonenumber,profilepictureurl,search,type;
 
     public User() {
     }
 
-    public User(String name, String bloodgroup, String id, String email, String idnumber, String phonenumber, String profilepictureurl, String search, String type) {
-        this.name = name;
+    public User(String id, String bloodgroup, String email, String idnumber, String name, String phonenumber, String profilepictureurl, String search, String type) {
+        Id = id;
         this.bloodgroup = bloodgroup;
-        this.id = id;
         this.email = email;
         this.idnumber = idnumber;
+        this.name = name;
         this.phonenumber = phonenumber;
         this.profilepictureurl = profilepictureurl;
         this.search = search;
         this.type = type;
     }
 
-    public String getName() {
-        return name;
+    public String getId() {
+        return Id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String id) {
+        Id = id;
     }
 
     public String getBloodgroup() {
@@ -32,14 +32,6 @@ public class User {
 
     public void setBloodgroup(String bloodgroup) {
         this.bloodgroup = bloodgroup;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getEmail() {
@@ -56,6 +48,14 @@ public class User {
 
     public void setIdnumber(String idnumber) {
         this.idnumber = idnumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPhonenumber() {

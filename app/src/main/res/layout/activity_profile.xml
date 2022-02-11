@@ -24,11 +24,10 @@
         android:textSize="18sp"
         android:gravity="center"
         android:textStyle="bold"
-        android:textAllCaps="true"
-        android:text="type"/>
+        android:textAllCaps="true" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
+        android:id="@+id/profileImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
@@ -45,7 +44,7 @@
         android:gravity="center"
 
         android:textAllCaps="false"
-        android:text="name"/>
+        />
 
     <TextView
         android:layout_width="match_parent"
@@ -56,28 +55,38 @@
         android:gravity="center"
 
         android:textAllCaps="false"
-        android:text="email"/>
+        />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/Idnumber"
+        android:id="@+id/idNumber"
         android:layout_margin="5dp"
         android:textSize="18sp"
         android:gravity="center"
         android:textAllCaps="true"
-        android:text="idnumber"/>
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bloodGroup"
+        android:layout_margin="5dp"
+        android:textSize="18sp"
+        android:gravity="center"
+
+        android:textAllCaps="true"
+        />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/mobilenumber"
+        android:id="@+id/phonenumber"
         android:layout_margin="5dp"
         android:textSize="18sp"
         android:gravity="center"
 
         android:textAllCaps="true"
-        android:text="mobilenumber"/>
+        />
 
     <Button
         android:layout_width="match_parent"
@@ -86,7 +95,7 @@
         android:backgroundTint="@color/theme"
         android:text="Back to App"
         android:textAllCaps="false"
-        android:id="@+id/back"
+        android:id="@+id/backButton"
         />
 
 

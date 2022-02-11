@@ -1,20 +1,21 @@
 {
   "project_info": {
-    "project_number": "1092257294185",
-    "project_id": "blood-hub-3f69e",
-    "storage_bucket": "blood-hub-3f69e.appspot.com"
+    "project_number": "367410782238",
+    "firebase_url": "https://blood-hub-bb489-default-rtdb.firebaseio.com",
+    "project_id": "blood-hub-bb489",
+    "storage_bucket": "blood-hub-bb489.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1092257294185:android:329c6bd2a5cad3757f7ff8",
+        "mobilesdk_app_id": "1:367410782238:android:9c8b80f24b30de7460ce0f",
         "android_client_info": {
           "package_name": "com.example.bloodhub"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1092257294185-qrmpv6tftpfma6mjh40ll66r8il44a92.apps.googleusercontent.com",
+          "client_id": "367410782238-b13hhri9mn0qdsck0k653qekh6gf4bnd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.bloodhub",
@@ -22,20 +23,20 @@
           }
         },
         {
-          "client_id": "1092257294185-hoack038o66n7ta8q7csq49p7a1alcoo.apps.googleusercontent.com",
+          "client_id": "367410782238-pv6k8tf1dgc8qth02vdevnmg2hirpc5m.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB8JRBWnICz3yTJRODWA0nPU32hl4DWH7I"
+          "current_key": "AIzaSyDHREUQOt3hQu4WWj9hKdABHYM44SskjxM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1092257294185-hoack038o66n7ta8q7csq49p7a1alcoo.apps.googleusercontent.com",
+              "client_id": "367410782238-pv6k8tf1dgc8qth02vdevnmg2hirpc5m.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

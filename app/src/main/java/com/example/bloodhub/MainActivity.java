@@ -3,25 +3,22 @@ package com.example.bloodhub;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.bumptech.glide.Glide;
-import com.example.bloodhub.Adapter.UserAdapter;
-import com.example.bloodhub.Modal.User;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +27,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.example.bloodhub.Adapter.UserAdapter;
+import com.example.bloodhub.Model.User;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         private UserAdapter userAdapter;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,8 +66,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Blood Hub");
 
-        drawerLayout = findViewById(R.id.drawer_layout);
-        nav_view = findViewById(R.id.navigation_view);
+        drawerLayout = findViewById(R.id.drawerLayout);
+        nav_view = findViewById(R.id.nav_view);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(MainActivity.this, drawerLayout,
                 toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_closed);
@@ -75,12 +77,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nav_view.setNavigationItemSelectedListener(this);
 
         progressBar = findViewById(R.id.progressbar);
+
         recyclerView = findViewById(R.id.recyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(layoutManager);
-
 
         userList = new ArrayList<>();
         userAdapter = new UserAdapter(MainActivity.this,userList);
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference()
                 .child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -152,7 +155,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void readDonors() {
-
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
                 .child("users");
         Query query = reference.orderByChild("type").equalTo("donor");
@@ -161,14 +163,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 userList.clear();
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    User user = snapshot.getValue(User.class);
+                    User user = dataSnapshot.getValue(User.class);
                     userList.add(user);
                 }
                 userAdapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.GONE);
 
                 if(userList.isEmpty()){
-                    Toast.makeText(MainActivity.this,"No Donors record found",Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this,"No donors record found",Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
                 }
             }
@@ -178,29 +180,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-
     }
 
     private void readRecipients() {
-
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
                 .child("users");
-        Query query = reference.orderByChild("type").equalTo("recepient");
+        Query query = reference.orderByChild("type").equalTo("recipient");
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-           userList.clear();
-           for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-               User user = snapshot.getValue(User.class);
-               userList.add(user);
-           }
-           userAdapter.notifyDataSetChanged();
-           progressBar.setVisibility(View.GONE);
+              userList.clear();
+              for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                  User user = dataSnapshot.getValue(User.class);
+                  userList.add(user);
+              }
+              userAdapter.notifyDataSetChanged();
+              progressBar.setVisibility(View.GONE);
 
-           if(userList.isEmpty()){
-               Toast.makeText(MainActivity.this,"No Recipients record found",Toast.LENGTH_LONG).show();
-               progressBar.setVisibility(View.GONE);
-           }
+              if(userList.isEmpty()){
+                  Toast.makeText(MainActivity.this,"No recipients record found",Toast.LENGTH_LONG).show();
+                  progressBar.setVisibility(View.GONE);
+              }
             }
 
             @Override
@@ -210,10 +210,61 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
+
+            case R.id.aplus:
+                Intent i1 = new Intent(MainActivity.this,CategorySelectedActivity.class);
+                i1.putExtra("group","A+");
+                startActivity(i1);
+                break;
+
+            case R.id.aminus:
+                Intent i2 = new Intent(MainActivity.this,CategorySelectedActivity.class);
+                i2.putExtra("group","A-");
+                startActivity(i2);
+                break;
+            case R.id.bplus:
+                Intent i3 = new Intent(MainActivity.this,CategorySelectedActivity.class);
+                i3.putExtra("group","B+");
+                startActivity(i3);
+                break;
+            case R.id.bminus:
+                Intent i4 = new Intent(MainActivity.this,CategorySelectedActivity.class);
+                i4.putExtra("group","B-");
+                startActivity(i4);
+                break;
+            case R.id.abplus:
+                Intent i5 = new Intent(MainActivity.this,CategorySelectedActivity.class);
+                i5.putExtra("group","AB+");
+                startActivity(i5);
+                break;
+            case R.id.abminus:
+                Intent i6 = new Intent(MainActivity.this,CategorySelectedActivity.class);
+                i6.putExtra("group","AB-");
+                startActivity(i6);
+                break;
+            case R.id.oplus:
+                Intent i7 = new Intent(MainActivity.this,CategorySelectedActivity.class);
+                i7.putExtra("group","O+");
+                startActivity(i7);
+                break;
+            case R.id.ominus:
+                Intent i8 = new Intent(MainActivity.this,CategorySelectedActivity.class);
+                i8.putExtra("group","O-");
+                startActivity(i8);
+                break;
+
+            case R.id.compatible:
+                Intent i9 = new Intent(MainActivity.this,CategorySelectedActivity.class);
+                i9.putExtra("group","Compatible with me");
+                startActivity(i9);
+                break;
+
+
             case R.id.profile:
                 Intent i = new Intent(MainActivity.this,ProfileActivity.class);
                 startActivity(i);

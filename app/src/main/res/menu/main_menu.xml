@@ -4,50 +4,62 @@
     <item
         android:id="@+id/home"
         android:title="Home"
+        android:checked="true"
         android:icon="@drawable/ic_home"/>
 
     <item
         android:id="@+id/sent_email"
         android:title="Donor's e-mail"
+        android:checked="true"
         android:icon="@drawable/ic_check"/>
     <item
         android:id="@+id/compatible"
         android:title="Compatible"
+        android:checked="true"
         android:icon="@drawable/compatible"/>
-    <item android:title="Blood Groups">
+    <item android:title="Blood Groups"
+        android:checked="true">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/aplus"
                     android:title="A-positive"
+                    android:checked="true"
                     android:icon="@drawable/aplus"/>
                 <item
                     android:id="@+id/aminus"
                     android:title="A-negative"
+                    android:checked="true"
                     android:icon="@drawable/aminus"/>
                 <item
                     android:id="@+id/bplus"
                     android:title="B-positive"
+                    android:checked="true"
                     android:icon="@drawable/bplus"/>
                 <item
                     android:id="@+id/bminus"
                     android:title="B-negative"
+                    android:checked="true"
                     android:icon="@drawable/bminus"/>
                 <item
                     android:id="@+id/abplus"
                     android:title="AB-positive"
+                    android:checked="true"
                     android:icon="@drawable/abplus"/>
                 <item
                     android:id="@+id/abminus"
                     android:title="AB-negative"
+                    android:checked="true"
                     android:icon="@drawable/abminus"/>
                 <item
                     android:id="@+id/oplus"
                     android:title="O-positive"
+                    android:checked="true"
                     android:icon="@drawable/oplus"/>
                 <item
                     android:id="@+id/ominus"
                     android:title="O-negative"
+                    android:checked="true"
                     android:icon="@drawable/ominus"/>
 
             </group>
@@ -60,14 +72,17 @@
                 <item
                     android:id="@+id/profile"
                     android:title="Profile"
+                    android:checked="true"
                     android:icon="@drawable/ic_person"/>
                 <item
                     android:id="@+id/notification"
                     android:title="Notifications"
+                    android:checked="true"
                     android:icon="@drawable/ic_notification"/>
                 <item
                     android:id="@+id/signout"
                     android:title="SignOut"
+                    android:checked="true"
                     android:icon="@drawable/ic_signout"/>
 
 
@@ -82,11 +97,13 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/about"
-                    android:title="Profile"
+                    android:title="About"
+                    android:checked="true"
                     android:icon="@drawable/ic_about"/>
                 <item
                     android:id="@+id/share"
                     android:title="Share"
+                    android:checked="true"
                     android:icon="@drawable/ic_share"/>
 
 

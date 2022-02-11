@@ -148,8 +148,8 @@ public class RecepientRegistrationActivity extends AppCompatActivity {
                                 userInfo.put("idnumber",IdNumber);
                                 userInfo.put("phonenumber",phonenumber);
                                 userInfo.put("bloodgroup",bloodgroup);
-                                userInfo.put("type","recepient");
-                                userInfo.put("search","recepient"+bloodgroup);
+                                userInfo.put("type","recipient");
+                                userInfo.put("search","recipient"+bloodgroup);
 
 
 
