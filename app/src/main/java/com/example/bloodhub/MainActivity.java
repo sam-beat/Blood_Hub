@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                     if(type.equals("donor")){
                         nav_menu.findItem(R.id.sent_email).setTitle("Received E-mails");
+                        nav_menu.findItem(R.id.notification).setVisible(true);
                     }
 
 
@@ -278,6 +279,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.profile:
                 Intent i = new Intent(MainActivity.this,ProfileActivity.class);
                 startActivity(i);
+                break;
+
+            case R.id.notification:
+                Intent i11 = new Intent(MainActivity.this,NotificationActivity.class);
+                startActivity(i11);
                 break;
             case R.id.signout:
                 FirebaseAuth.getInstance().signOut();

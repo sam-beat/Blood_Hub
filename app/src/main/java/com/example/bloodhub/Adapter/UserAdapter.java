@@ -116,6 +116,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                                                     DatabaseReference receiverRef = FirebaseDatabase.getInstance().getReference("emails")
                                                             .child(idOfTheReceiver);
                                                     receiverRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(true);
+
+
+                                                    addNotification(idOfTheReceiver,FirebaseAuth.getInstance().getCurrentUser().getUid());
+
                                                 }
                                             }
                                         });
@@ -159,5 +163,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             bloodGroup = itemView.findViewById(R.id.bloodGroup);
             emailNow = itemView.findViewById(R.id.emailNow);
         }
+    }
+
+    private void addNotification(String receiverId, String senderId){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("notifications").child(receiverId);
+
+        String date = DateFormat.getDateInstance().format(new Date());
+        HashMap<String, Object>hashMap =new HashMap<>();
+        hashMap.put("receiverId",receiverId);
+        hashMap.put("senderId",senderId);
+        hashMap.put("text","Sent you an mail. Kindly check it out.:)");
+        hashMap.put("date",date);
+
+        reference.push().setValue(hashMap);
     }
 }
