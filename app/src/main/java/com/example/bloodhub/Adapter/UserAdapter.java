@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.bloodhub.Email.JavaMailApi;
 import com.example.bloodhub.Model.User;
 import com.example.bloodhub.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -66,6 +67,74 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.bloodGroup.setText(user.getBloodgroup());
 
         Glide.with(context).load(user.getProfilepictureurl()).into(holder.userProfileImage);
+
+        final String nameOfTheReceiver = user.getName();
+        final String idOfTheReceiver = user.getId();
+
+        //sending the E-mail
+
+        holder.emailNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(context)
+                        .setTitle("SEND E-MAIL")
+                        .setMessage("Send mail to " + user.getName() + " ?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                                        .child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                reference.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        String nameOfSender = snapshot.child("name").getValue().toString();
+                                        String email = snapshot.child("email").getValue().toString();
+                                        String phone = snapshot.child("phonenumber").getValue().toString();
+                                        String blood = snapshot.child("bloodgroup").getValue().toString();
+
+                                        String mEmail = user.getEmail();
+                                        String mSubject = "Blood Donation";
+                                        String mMessage = "Hello "+ nameOfTheReceiver+", "+nameOfSender+
+                                                " urgently requires blood of your type. Here's his/her details:\n"
+                                                +"Name: "+nameOfSender+ "\n"+
+                                                "Phone Number: "+phone+ "\n"+
+                                                "Email: " +email+"\n"+
+                                                "Blood Group: "+blood+ "\n"+
+                                                "Kindly Reach out to him/her. Thank you!\n"
+                                                +"BLOOD HUB - DONATE BLOOD, SAVE LIVES!";
+
+                                        JavaMailApi javaMailApi = new JavaMailApi(context,mEmail,mSubject,mMessage);
+                                        javaMailApi.execute();
+
+                                        DatabaseReference senderRef = FirebaseDatabase.getInstance().getReference("emails")
+                                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                        senderRef.child(idOfTheReceiver).setValue(true).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if(task.isSuccessful()){
+                                                    DatabaseReference receiverRef = FirebaseDatabase.getInstance().getReference("emails")
+                                                            .child(idOfTheReceiver);
+                                                    receiverRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(true);
+                                                }
+                                            }
+                                        });
+
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+                            }
+                        })
+                        .setNegativeButton("No",null)
+                        .show();
+             }
+        });
+
     }
 
     @Override

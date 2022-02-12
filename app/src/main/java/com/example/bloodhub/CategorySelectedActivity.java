@@ -76,14 +76,14 @@ public class CategorySelectedActivity extends AppCompatActivity {
                 String result;
 
                 String type = snapshot.child("type").getValue().toString();
-                if(type.equals("donors")){
+                if(type.equals("donor")){
                     result = "recipient";
                 }
                 else{
                     result = "donor";
                 }
 
-                String bloodgroup = snapshot.child("bloodgroup").toString();
+                String bloodgroup = snapshot.child("bloodgroup").getValue().toString();
                 DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("users");
 
                 Query query = reference.orderByChild("search").equalTo(result+bloodgroup);
@@ -125,7 +125,7 @@ public class CategorySelectedActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String result;
                 String type = snapshot.child("type").getValue().toString();
-                if(type.equals("donors")){
+                if(type.equals("donor")){
                     result = "recipient";
                 }
                 else{
