@@ -144,6 +144,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
 
 
+                    Menu nav_menu = nav_view.getMenu();
+
+                    if(type.equals("donor")){
+                        nav_menu.findItem(R.id.sent_email).setTitle("Received E-mails");
+                    }
+
+
                 }
             }
 
@@ -263,7 +270,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 i9.putExtra("group","Compatible with me");
                 startActivity(i9);
                 break;
-
+            case R.id.sent_email:
+                Intent i10 = new Intent(MainActivity.this,SentEmailActivity.class);
+                startActivity(i10);
+                break;
 
             case R.id.profile:
                 Intent i = new Intent(MainActivity.this,ProfileActivity.class);
