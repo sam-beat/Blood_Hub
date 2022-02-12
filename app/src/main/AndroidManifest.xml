@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BloodHub">
         <activity
+            android:name=".AboutUsActivity"
+            android:exported="false" />
+        <activity
             android:name=".NotificationActivity"
             android:exported="false" />
         <activity

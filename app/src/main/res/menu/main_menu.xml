@@ -17,7 +17,7 @@
         android:title="Compatible"
         android:checked="true"
         android:icon="@drawable/compatible"/>
-    <item android:title="Blood Groups"
+    <item android:title="Filter Blood Groups"
         android:checked="true">
         <menu>
             <group android:checkableBehavior="single">

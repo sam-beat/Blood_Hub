@@ -145,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
                     Menu nav_menu = nav_view.getMenu();
+                    nav_menu.findItem(R.id.aplus).setTitle("A-Positive");
 
                     if(type.equals("donor")){
                         nav_menu.findItem(R.id.sent_email).setTitle("Received E-mails");
@@ -223,6 +224,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
+            case R.id.home:
+                Intent i0 = new Intent(MainActivity.this,MainActivity.class);
+                startActivity(i0);
+                break;
 
             case R.id.aplus:
                 Intent i1 = new Intent(MainActivity.this,CategorySelectedActivity.class);
@@ -289,6 +294,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 FirebaseAuth.getInstance().signOut();
                 Intent intent2 = new Intent(MainActivity.this,LoginActivity.class);
                 startActivity(intent2);
+                break;
+            case R.id.about:
+                Intent i12 = new Intent(MainActivity.this,AboutUsActivity.class);
+                startActivity(i12);
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
